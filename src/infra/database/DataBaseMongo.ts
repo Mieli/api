@@ -5,7 +5,7 @@ export const DatabaseMongo = {
   db: undefined as unknown as Db,
 
   async connect(): Promise<void> {
-    const url = process.env.MONGODB_URL || "mongodb://localhost:27017";
+    const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
     const client = new Mongo(url);
     const db = client.db("api-rest");

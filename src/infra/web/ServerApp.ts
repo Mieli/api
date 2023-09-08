@@ -4,6 +4,7 @@ import apiRoutes from "../routes/apiRoutes";
 
 export default class ServerApp {
   private readonly app: Express;
+  private server: any;
 
   constructor() {
     this.app = express();
@@ -19,14 +20,20 @@ export default class ServerApp {
   #configurarRotas(): void {
     this.app.use("/api/v1", apiRoutes);
 
-    this.app.use("/", (req: Request, res: Response) => {
-      res.status(200).json({ message: "bem vindo a API" });
+    this.app.use((req: Request, res: Response) => {
+      res.status(404).json({ message: "Rota não encontrada" });
     });
   }
 
   start(port: string | number): void {
-    this.app.listen(port, () =>
+    this.server = this.app.listen(port, () =>
       console.log(`Servidor rodando na porta ${port}`)
     );
+  }
+
+  stop(): void {
+    if (this.server) {
+      this.server.close();
+    }
   }
 }

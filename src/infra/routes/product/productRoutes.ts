@@ -1,17 +1,9 @@
 import { Request, Response, Router } from "express";
-
-import { ProductRepositoryMongo } from "../../database/repositories/product/ProductRepositoryMongo";
-import { ProductService } from "../../../app/services/product/ProductService";
-import { ProductUseCase } from "../../../app/usecases/product/ProductUseCase";
-import { ProductController } from "../../web/controllers/product/ProductController";
+import { configParams } from "./configParams";
 
 const router = Router();
 
-const service: ProductService = new ProductService(
-  new ProductRepositoryMongo()
-);
-
-const controller = new ProductController(new ProductUseCase(service));
+const controller = configParams();
 
 router.get("/", (req: Request, res: Response) =>
   controller.getAllProducts(req, res)
