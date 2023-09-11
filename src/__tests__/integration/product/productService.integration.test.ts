@@ -33,22 +33,35 @@ describe("ProductService", () => {
       price: 10.99,
       stock: 100,
     };
-    await await productUseCase.create(productData);
+    await productUseCase.create(productData);
     expect(mockProductService.create).toHaveBeenCalledWith(productData);
   });
 
   it("deve verificar se o método de alterar o produto do caso de uso foi chamada", async () => {
-    const productId = "1";
-    const updatedProductData: Product = {
-      name: "Updated Product Name",
-      price: 19.99,
-      stock: 300,
+    const productData: Product = {
+      name: "Product Name",
+      price: 10.99,
+      stock: 100,
     };
-    await productUseCase.update(productId, updatedProductData);
-    expect(mockProductService.update).toHaveBeenCalledWith(
-      productId,
-      updatedProductData
-    );
+    const createdProduct = await productUseCase.create(productData);
+
+    const idToUpdateProduct = createdProduct.id;
+    if (idToUpdateProduct) {
+      const updatedProductData: Product = {
+        name: "Updated Product Name",
+        price: 19.99,
+        stock: 300,
+      };
+      const updatedProduct = await productUseCase.update(
+        idToUpdateProduct,
+        updatedProductData
+      );
+      expect(mockProductService.update).toHaveBeenCalledWith(
+        idToUpdateProduct,
+        updatedProductData
+      );
+      expect(updatedProduct).toMatchObject(createdProduct);
+    }
   });
 
   it("deve verificar se o método de remover o produto do caso de uso foi chamada", async () => {

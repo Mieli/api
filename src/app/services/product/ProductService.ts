@@ -18,13 +18,7 @@ export class ProductService {
     return this.repository.create(product);
   }
   async update(id: string, updatedProduct: Product): Promise<Product | null> {
-    // checar se existe um produto com id informado
-    const oldProduct: Product | null = await this.findById(id);
-    if (oldProduct) {
-      return this.repository.update(id, updatedProduct);
-    } else {
-      return null;
-    }
+    return this.repository.update(id, updatedProduct);
   }
   async remove(id: string): Promise<boolean> {
     return this.repository.remove(id);
