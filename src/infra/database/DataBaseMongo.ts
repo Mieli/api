@@ -4,13 +4,14 @@ export const DatabaseMongo = {
   client: undefined as unknown as Mongo,
   db: undefined as unknown as Db,
 
-  async connect(): Promise<void> {
-    const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
+  async connect(uri: string): Promise<void> {
+    this.client = new Mongo(uri);
+    this.db = this.client.db(process.env.DATABASE_NAME);
+  },
 
-    const client = new Mongo(url);
-    const db = client.db("api-rest");
-
-    this.client = client;
-    this.db = db;
+  async close(): Promise<void> {
+    if (this.client) {
+      await this.client.close();
+    }
   },
 };

@@ -1,9 +1,9 @@
 import cors from "cors";
-import express, { Express, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import apiRoutes from "../routes/apiRoutes";
 
 export default class ServerApp {
-  private readonly app: Express;
+  private readonly app: Application;
   private server: any;
 
   constructor() {

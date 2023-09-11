@@ -11,13 +11,13 @@ export class ProductRepositoryMongo implements IProductRepository {
   }
 
   async findAll(): Promise<Product[]> {
-    return await DatabaseMongo.db
+    return DatabaseMongo.db
       .collection<Product>(this.collection)
       .find({})
       .toArray();
   }
   async findById(id: string): Promise<Product | null> {
-    return await DatabaseMongo.db
+    return DatabaseMongo.db
       .collection<Product>(this.collection)
       .findOne({ _id: new ObjectId(id) });
   }

@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
-import { configParams } from "./configParams";
+import configProductControllerParams from "./configParams";
 
 const router = Router();
 
-const controller = configParams();
+const controller = configProductControllerParams();
 
 router.get("/", (req: Request, res: Response) =>
   controller.getAllProducts(req, res)
