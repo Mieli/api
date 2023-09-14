@@ -7,7 +7,7 @@ import { DatabaseMongo } from "../../DataBaseMongo";
 export class ProductRepositoryMongo implements IProductRepository {
   private collection: string;
   constructor() {
-    this.collection = "product";
+    this.collection = "products";
   }
 
   async findAll(): Promise<Product[]> {

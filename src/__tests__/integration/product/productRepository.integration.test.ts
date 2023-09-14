@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { ProductRepositoryMongo } from "../../../infra/database/repositories/product/ProductRepositoryMongo";
 import { DatabaseMongo } from "../../../infra/database/DataBaseMongo";

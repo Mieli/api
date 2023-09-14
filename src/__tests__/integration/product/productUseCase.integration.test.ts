@@ -1,23 +1,29 @@
 import Product from "../../../app/domain/product/Product";
 import { ProductService } from "../../../app/services/product/ProductService";
 import { ProductUseCase } from "../../../app/usecases/product/ProductUseCase";
-import { ProductRepositoryMongo } from "../../../infra/database/repositories/product/ProductRepositoryMongo";
-import { MockProductRepositoryMongo } from "./mocks/MockProductRepositoryMongo";
 
 describe("ProductUseCase", () => {
-  //crie uma instância do servico
-  const productServiceMock = new ProductService(
-    new MockProductRepositoryMongo() as unknown as ProductRepositoryMongo
-  );
+  let productServiceMock: ProductService;
+  let productUseCase: ProductUseCase;
 
-  // Crie uma instância do caso de uso usando o serviço fictício
-  const productUseCase = new ProductUseCase(productServiceMock);
+  beforeEach(() => {
+    // Crie um mock do ProductService
+    productServiceMock = {
+      findAll: jest.fn(),
+      findById: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      remove: jest.fn(),
+    } as unknown as ProductService;
 
-  afterEach(() => {
+    productUseCase = new ProductUseCase(productServiceMock);
+  });
+
+  afterEach(async () => {
     jest.clearAllMocks();
   });
 
-  it("deve verificar se o método de pesquisar todos os produto do caso de uso foi chamada", async () => {
+  it("deve verificar se o método de pesquisar todos os produto do caso de uso foi chamado", async () => {
     await productUseCase.findAll();
     expect(productServiceMock.findAll).toHaveBeenCalled();
   });

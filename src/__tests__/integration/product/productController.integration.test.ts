@@ -77,7 +77,7 @@ describe("Testar a API de produtos", () => {
     expect(response.body).toEqual({ message: "Not found." });
   });
 
-  it("should create a product", async () => {
+  it("deve criar um producto", async () => {
     const newProduct = { name: "New Product", price: 15.0, stock: 75 };
     // Mock the ProductUseCase create method to return the created product
     jest
@@ -90,7 +90,7 @@ describe("Testar a API de produtos", () => {
     expect(response.body).toEqual({ id: "3", ...newProduct });
   });
 
-  it("should update a product", async () => {
+  it("deve atualizar um produto informando o id do produto", async () => {
     const productId = "1";
     const updatedProduct = { name: "Updated Product", price: 12.0, stock: 90 };
     // Mock the ProductUseCase update method to return the updated product

@@ -1,25 +1,23 @@
+import ServerApp from "../../../infra/web/ServerApp";
+
 describe("Testar o servidor da aplicação", () => {
-  let baseURL: string;
+  const PORT: number = 3000;
+  const baseURL: string = `http://localhost:${PORT}`;
+  const server = new ServerApp();
 
   beforeAll(() => {
-    baseURL = `http://localhost:3000`;
+    server.start(PORT);
   });
 
-  afterAll(() => {});
+  afterAll(() => {
+    server.stop();
+  });
 
   it('deve responder com mensagem "bem vindo a API" ', async () => {
-    const response = await fetch(`${baseURL}/api/v1`);
+    const response = await fetch(`${baseURL}/api/v1/`);
     const data = await response.json();
 
     expect(response.status).toBe(200);
     expect(data.message).toBe("Bem vindo a API");
-  });
-
-  it("deve responder com status 404 em uma rota desconhecida", async () => {
-    const response = await fetch(`${baseURL}/rota-desconhecida`);
-    const data = await response.json();
-
-    expect(response.status).toBe(404);
-    expect(data.message).toBe("Rota não encontrada");
   });
 });

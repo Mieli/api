@@ -19,10 +19,6 @@ export default class ServerApp {
 
   #configurarRotas(): void {
     this.app.use("/api/v1", apiRoutes);
-
-    this.app.use((req: Request, res: Response) => {
-      res.status(404).json({ message: "Rota não encontrada" });
-    });
   }
 
   start(port: string | number): void {
@@ -34,6 +30,7 @@ export default class ServerApp {
   stop(): void {
     if (this.server) {
       this.server.close();
+      console.log(`Servidor desligado.`);
     }
   }
 }
