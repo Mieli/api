@@ -1,15 +1,26 @@
 import cors from "cors";
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import apiRoutes from "../routes/apiRoutes";
+import { ApolloServer } from "apollo-server-express";
+import schema from "./graphql";
 
 export default class ServerApp {
   private readonly app: Application;
   private server: any;
+  private serverApollo: ApolloServer;
 
   constructor() {
     this.app = express();
     this.#configurarMiddlewares();
     this.#configurarRotas();
+
+    this.serverApollo = new ApolloServer({
+      schema,
+    });
+  
+    this.serverApollo.start().then(() => {
+      this.serverApollo.applyMiddleware({ app: this.app, path: "/graphql" });
+    });
   }
 
   #configurarMiddlewares(): void {
@@ -19,7 +30,9 @@ export default class ServerApp {
 
   #configurarRotas(): void {
     this.app.use("/api/v1", apiRoutes);
+    this.app.use("/graphql", express.json());
   }
+
 
   start(port: string | number): void {
     this.server = this.app.listen(port, () =>
@@ -30,6 +43,8 @@ export default class ServerApp {
   stop(): void {
     if (this.server) {
       this.server.close();
+      this.server.stop();
+      this.serverApollo.stop();
       console.log(`Servidor desligado.`);
     }
   }

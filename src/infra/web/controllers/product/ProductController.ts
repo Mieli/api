@@ -41,7 +41,7 @@ export class ProductController {
 
   async updateProduct(req: Request, res: Response): Promise<void> {
     const { idParams } = req.params;
-    const { id, name, price, stock } = req.body;
+    const { name, price, stock } = req.body;
     const priceFormated: number = convertStringToFloat(price);
     const stockFormated: number = convertStringToInt(stock);
     const data: Product | null = await this.useCase.update(idParams, {
