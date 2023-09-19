@@ -1,4 +1,4 @@
-# Projeto de uma API desenvolvida usando typescript
+# Projeto de uma API desenvolvida usando Typescript
 
 Uma API que suporta requisições REST e GraphQL.
 
