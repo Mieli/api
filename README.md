@@ -48,15 +48,47 @@ npm run dev
 
 #### Exemplos de Requisições REST:
 
-- [GET] Pesquisar todos os produtos: [http://localhost:3000/api/v1/products]
-- [GET] Pesquisar um produto por id: [http://localhost:3000/api/v1/products/INFORMAR_ID_DO_PRODUTO]
-- [POST] Cadastrar produto: [http://localhost:3000/api/v1/products]
-- [PUT] Alterar um produto: [http://localhost:3000/api/v1/products]
-- [DELETE] Remover um produto: [http://localhost:3000/api/v1/products/INFORMAR_ID_DO_PRODUTO]
+- <span style="color:red"> GET </span> <br />
+    Pesquisar todos os produtos: 
+```sh 
+    http://localhost:3000/api/v1/products 
+``` 
+
+- <span style="color:red"> GET </span><br />
+    Pesquisar um produto por id: 
+```sh  
+http://localhost:3000/api/v1/products/INFORMAR_ID_DO_PRODUTO
+``` 
+
+
+- <span style="color:red"> POST </span><br />
+    Cadastrar produto: 
+
+```sh 
+http://localhost:3000/api/v1/products
+``` 
+
+
+- <span style="color:red"> PUT </span><br />
+    Alterar um produto: 
+
+```sh 
+http://localhost:3000/api/v1/products
+``` 
+
+
+- <span style="color:red"> DELETE </span> <br />
+    Remover um produto:
+
+```sh 
+http://localhost:3000/api/v1/products/INFORMAR_ID_DO_PRODUTO
+``` 
+
+
 
 #### Exemplos de Consultas GraphQL:
 
-- [Pesquisar produtos]
+- <span style="color:red"> Pesquisar produtos </span>
 
 ```sh
   getAllProducts() {
@@ -67,7 +99,7 @@ npm run dev
   }
 ```
 
-- [Pesquisar um produto]
+-  <span style="color:red"> Pesquisar um produto </span>
 
 ```sh
    getProduct(id: $getProductId) {
@@ -84,7 +116,7 @@ variables:
 
 ```
 
-- [Cadastrar produto]
+- <span style="color:red"> Cadastrar produto </span>
 
 ```sh
 createProduct(name: $name, price: $price, stock: $stock) {
@@ -102,7 +134,7 @@ variables:
 }
 ```
 
-- [Atualizar produto]
+- <span style="color:red"> Atualizar produto </span>
 
 ```sh
 updateProduct(id: $updateProductId, name: $name, price: $price, stock: $stock) {
@@ -120,7 +152,7 @@ variables:
   "stock": 600
 }
 ```
-- [Remover produto]
+- <span style="color:red">Remover produto </span>
 
 ```sh
 updateProduct(id: $updateProductId, name: $name, price: $price, stock: $stock) {
