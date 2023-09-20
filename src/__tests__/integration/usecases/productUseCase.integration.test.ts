@@ -2,7 +2,7 @@ import Product from "../../../app/domain/product/Product";
 import { ProductService } from "../../../app/services/product/ProductService";
 import { ProductUseCase } from "../../../app/usecases/product/ProductUseCase";
 
-describe("ProductUseCase", () => {
+describe("INTEGRATION  usecase => produtos", () => {
   let productServiceMock: ProductService;
   let productUseCase: ProductUseCase;
 

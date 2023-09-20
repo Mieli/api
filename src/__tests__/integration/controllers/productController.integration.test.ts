@@ -5,22 +5,22 @@ import { ProductUseCase } from "../../../app/usecases/product/ProductUseCase";
 import { ProductService } from "../../../app/services/product/ProductService";
 import { ProductRepositoryMongo } from "../../../infra/database/repositories/product/ProductRepositoryMongo";
 
-function createDependencies() {
+function createMockDependecies() {
   const product1 = { id: "1", name: "Product 1", price: 10.0, stock: 100 };
   const product2 = { id: "2", name: "Product 2", price: 20.0, stock: 50 };
 
   return { product1, product2 };
 }
 
-describe("Testar a API de produtos", () => {
+describe("INTEGRATION  controller => produtos", () => {
   let productController: ProductController;
   let app: express.Express;
   let request: supertest.SuperTest<supertest.Test>;
 
   beforeAll(() => {
-    const repository = new ProductRepositoryMongo();
-    const service = new ProductService(repository);
-    const usecase = new ProductUseCase(service);
+    const repository: ProductRepositoryMongo = new ProductRepositoryMongo();
+    const service: ProductService = new ProductService(repository);
+    const usecase: ProductUseCase = new ProductUseCase(service);
     productController = new ProductController(usecase);
 
     app = express();
@@ -40,11 +40,12 @@ describe("Testar a API de produtos", () => {
     app.delete("/products/:id", (req: Request, res: Response) =>
       productController.deleteProduct(req, res)
     );
+
     request = supertest(app);
   });
 
   it("Deve exibir a lista de todos produtos", async () => {
-    const { product1, product2 } = createDependencies();
+    const { product1, product2 } = createMockDependecies();
     jest
       .spyOn(productController["useCase"], "findAll")
       .mockResolvedValue([product1, product2]);
@@ -54,9 +55,9 @@ describe("Testar a API de produtos", () => {
     expect(response.body).toEqual([product1, product2]);
   });
 
-  it("Deve exibir o produto com o id informado", async () => {
+  it("Deve exibir o produto informando o id ", async () => {
     const productId = "1";
-    const { product1 } = createDependencies();
+    const { product1 } = createMockDependecies();
     jest
       .spyOn(productController["useCase"], "findById")
       .mockResolvedValue(product1);
@@ -77,7 +78,7 @@ describe("Testar a API de produtos", () => {
     expect(response.body).toEqual({ message: "Not found." });
   });
 
-  it("deve criar um producto", async () => {
+  it("deve criar um produto", async () => {
     const newProduct = { name: "New Product", price: 15.0, stock: 75 };
     // Mock the ProductUseCase create method to return the created product
     jest

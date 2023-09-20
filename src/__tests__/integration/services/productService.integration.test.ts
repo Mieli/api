@@ -2,7 +2,7 @@ import Product from "../../../app/domain/product/Product";
 import { ProductService } from "../../../app/services/product/ProductService";
 import { ProductRepositoryMongo } from "../../../infra/database/repositories/product/ProductRepositoryMongo";
 
-describe("ProductService", () => {
+describe("INTEGRATION  service => produtos", () => {
   let productRepositoryMock: ProductRepositoryMongo;
   let productServiceMock: ProductService;
   beforeEach(() => {

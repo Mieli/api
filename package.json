@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch 'src/' --exec 'ts-node src/cmd/Main.ts' -e ts",
+    "build": "npx tsc",
     "start": "ts-node src/cmd/Main.ts",
+    "dev": "nodemon --watch 'src/' --exec 'ts-node src/cmd/Main.ts' -e ts",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "test:coverage": "NODE_ENV=test jest --coverage",

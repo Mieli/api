@@ -3,6 +3,9 @@ GET http://localhost:3000
 
 ###
 GET http://localhost:3000/api/v1
+
+// Produtos
+
 ###
 GET http://localhost:3000/api/v1/products
 ###
@@ -12,21 +15,50 @@ POST http://localhost:3000/api/v1/products
 Content-Type: application/json
 
 {
-  "name": "Produto 05",
-  "price": "700",
-  "stock": "150"
+  "name": "Produto 52",
+  "price": "1250",
+  "stock": "10"
 }
 
 
 ###
-PUT http://localhost:3000/api/v1/products/64f954fddbe69c1312bf92f2
+PUT http://localhost:3000/api/v1/products/650a3002bd1c808614dac53f
 Content-Type: application/json
 
 {
-  "name": "Produto 02",
+  "name": "Produto 25",
   "price": "850",
   "stock": "20"
 }
 
 ###
-DELETE http://localhost:3000/api/v1/products/64f9539efc577d8c4e163c63
+DELETE http://localhost:3000/api/v1/products/650a3002bd1c808614dac53f
+
+
+// Categorias
+
+###
+GET http://localhost:3000/api/v1/categories
+###
+GET http://localhost:3000/api/v1/categories/650a2c5da5c1bf8241b5fef4
+###
+POST http://localhost:3000/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Utilidades"
+}
+
+
+###
+PUT http://localhost:3000/api/v1/categories/650a306ebc22d341cbe9db0d
+Content-Type: application/json
+
+{
+  "name": "Automotivo"
+}
+
+###
+DELETE http://localhost:3000/api/v1/categories/650a306ebc22d341cbe9db0d
+
+

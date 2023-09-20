@@ -1,7 +1,7 @@
 import ServerApp from "../../../infra/web/ServerApp";
 
-describe("Testar o servidor da aplicação", () => {
-  const PORT: number = 3000;
+describe("INTEGRATION servidor", () => {
+  const PORT = process.env.PORT_TEST || 3000;
   const baseURL: string = `http://localhost:${PORT}`;
   const server = new ServerApp();
 
@@ -9,8 +9,8 @@ describe("Testar o servidor da aplicação", () => {
     server.start(PORT);
   });
 
-  afterAll(() => {
-    server.stop();
+  afterAll(async () => {
+    await server.stop();
   });
 
   it('deve responder com mensagem "bem vindo a API" ', async () => {

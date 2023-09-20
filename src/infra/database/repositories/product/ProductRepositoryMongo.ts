@@ -34,11 +34,13 @@ export class ProductRepositoryMongo implements IProductRepository {
     return result;
   }
   async remove(id: string): Promise<boolean> {
+    if (!ObjectId.isValid(id)) {
+      throw new Error("ID inválido");
+    }
+
     const result = await DatabaseMongo.db
       .collection<Product>(this.collection)
-      .deleteOne({
-        _id: new ObjectId(id),
-      });
+      .deleteOne({ _id: new ObjectId(id) });
     return result.deletedCount === 1;
   }
 }

@@ -26,7 +26,7 @@ afterAll(async () => {
   (await mongod).stop();
 });
 
-describe("ProductRepositoryMongo", () => {
+describe("INTEGRATION  repository => produtos", () => {
   it("deve retornar uma lista de produtos", async () => {
     // Cria um novo produto
     for (let i = 1; i <= 3; i++) {

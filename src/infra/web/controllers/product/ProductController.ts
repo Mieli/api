@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ProductUseCase } from "../../../../app/usecases/product/ProductUseCase";
-import { convertStringToFloat, convertStringToInt } from "./helpers";
+import { convertStringToFloat, convertStringToInt } from "../helpers";
 import Product from "../../../../app/domain/product/Product";
 
 export class ProductController {

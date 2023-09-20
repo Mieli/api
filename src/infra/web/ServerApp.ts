@@ -17,7 +17,7 @@ export default class ServerApp {
     this.serverApollo = new ApolloServer({
       schema,
     });
-  
+
     this.serverApollo.start().then(() => {
       this.serverApollo.applyMiddleware({ app: this.app, path: "/graphql" });
     });
@@ -33,18 +33,16 @@ export default class ServerApp {
     this.app.use("/graphql", express.json());
   }
 
-
   start(port: string | number): void {
     this.server = this.app.listen(port, () =>
       console.log(`Servidor rodando na porta ${port}`)
     );
   }
 
-  stop(): void {
+  async stop(): Promise<void> {
     if (this.server) {
       this.server.close();
-      this.server.stop();
-      this.serverApollo.stop();
+      await this.serverApollo.stop();
       console.log(`Servidor desligado.`);
     }
   }

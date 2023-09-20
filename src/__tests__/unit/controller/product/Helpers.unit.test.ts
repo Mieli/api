@@ -1,7 +1,7 @@
 import {
   convertStringToFloat,
   convertStringToInt,
-} from "../../../../infra/web/controllers/product/helpers";
+} from "../../../../infra/web/controllers/helpers";
 
 describe("Testar as funcionalidades de Helpers", () => {
   it("Deve converter uma string em número", () => {
